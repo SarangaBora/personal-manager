@@ -1,0 +1,4 @@
+# Environment variables
+.env
+node_modules/
+frontend/Personal-manager/node_modules/
