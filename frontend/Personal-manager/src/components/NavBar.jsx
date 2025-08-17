@@ -1,8 +1,10 @@
 import { useState } from "react";
 import LoginPage from "./LoginPage";
 import { Link } from "react-router-dom";
+import { useLogin } from "../contexts/loginContext";
 const NavBar=()=>{
     const [showModal,setShowModal]=useState(false)
+    const {currUser} =useLogin()
 
 
     return (
@@ -14,7 +16,14 @@ const NavBar=()=>{
             
             
             </div> 
-            <div className="right-nav" onClick={()=>setShowModal(true)} ><div>Register/Signin</div></div>
+            <div className="right-nav" >
+                {currUser ?
+                (<div> Welcome, {currUser.name} !</div>) :
+                (<div onClick={()=>setShowModal(true)}>Register/Signin</div>)
+                    
+            }
+            </div>
+            
             {showModal && <div className="login-page-modal"><LoginPage  onClose={()=>setShowModal(false)}/></div>}
         </div>
         

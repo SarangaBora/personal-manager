@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDate } from "../contexts/selectedDateContext";
+import { useLogin } from "../contexts/loginContext";
 
 // function Notes() {
 //     const { selectedDate } = useDate()// Reminder: useDate is a defined function to call useContext(DateProvider)
@@ -31,9 +32,45 @@ function Notes() {
         start:"",
         end:""
     })
-
-
     const [tasks,setTasks]= useState([])
+
+ 
+    //context
+    const {selectedDate} =useDate()
+    
+
+    useEffect(()=>{
+       
+        const fetchTasks= async() =>{
+            const res = await fetch("",
+            {
+                method:"GET",
+                credentials:"include",
+            
+            }.then(res=>res.json())
+            .then(data=>{
+                setTasks(tasks.append(data))
+            })
+         )
+         if(!res.ok)
+         {
+            throw new Error("Error fetching tasks from the server! Try again")
+         }
+        }
+       
+       
+       try{
+         fetchTasks()
+       }
+       catch (e)
+       {
+        console.log(e)
+       }
+         
+       
+    },[selectedDate])
+
+
 
 
     const handleAddTask=(e)=>{
