@@ -59,7 +59,7 @@ function Calender() {
                         console.log(`Clicked on ${d}/${currentMonth + 1}/${currentYear}`)
                         setSelectedDate(new Date(currentYear, currentMonth, d))//WILL SELECT THE DATE AND CHANGE THE CONTEXT.
                         console.log(selectedDate)//TEST LINE
-                        console.log(new Date(currentYear, currentMonth, d))//TEST LINE
+                        // console.log(new Date(currentYear, currentMonth, d))//TEST LINE
                     }}
                 >
                     {d}

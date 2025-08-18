@@ -42,7 +42,9 @@ function Notes() {
     useEffect(()=>{
        
         const fetchTasks= async() =>{
-            const res = await fetch("",
+
+            // FIX THE API
+            const res = await fetch(`http://localhost:5000/tasks/getTasks?date=${selectedDate.toISOString()}`,
             {
                 method:"GET",
                 credentials:"include",
